@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>StudySpace | Student Productivity Hub</title>
+<link rel="stylesheet" href="style.css">
+
+</head>
+<body>
+<div class="layout">
+<aside class="sidebar">
+  <div class="brand"><span class="logo">S</span><span>StudySpace</span></div>
+  <p class="label">WORKSPACE</p>
+  <nav class="nav">
+    <button class="active" data-view="dashboard">▦ Overview</button>
+    <button data-view="assignments">☷ Assignments</button>
+    <button data-view="progress">◔ Progress</button>
+  </nav>
+  <div class="tip"><b>✦ Little steps add up.</b>Finish one task at a time. You're making progress!</div>
+  <div class="profile"><div class="avatar" id="avatar">S</div><div><strong id="profileName">Student</strong><small>My workspace</small></div><button id="changeName" title="Change name">✎</button></div>
+</aside>
+<main>
+<header class="top"><div><p class="eyebrow" id="dateLabel">YOUR STUDY SPACE</p><h1 id="greeting">Good day, Student ✦</h1><p class="subtle" id="subtitle">A clear plan makes a calmer mind.</p></div><button class="primary" id="addTask">＋ Add assignment</button></header>
+<section class="view" id="dashboard">
+<div class="stats">
+ <article class="card"><div class="stathead"><span class="icon purple">▤</span>ALL TASKS</div><div class="number" id="total">0</div><div class="hint">Assignments in your planner</div></article>
+ <article class="card"><div class="stathead"><span class="icon peach">◷</span>PENDING</div><div class="number" id="pending">0</div><div class="hint">Still waiting for you</div></article>
+ <article class="card"><div class="stathead"><span class="icon mint">✓</span>COMPLETED</div><div class="number" id="completed">0</div><div class="hint">Nice work — keep going</div></article>
+ <article class="card"><div class="stathead"><span class="icon blue">⌁</span>OVERDUE</div><div class="number" id="overdue">0</div><div class="hint">Past their due date</div></article>
+</div>
+<div class="columns">
+<section class="panel"><div class="panelhead"><div><p class="eyebrow">YOUR WORKLOAD</p><h2>Upcoming assignments</h2></div><button class="link" data-goto="assignments">View all →</button></div><div id="upcoming"></div><div id="emptyUpcoming" class="empty"><b>A fresh start!</b>Add an assignment to organize your workload.</div></section>
+<section class="panel"><div class="panelhead"><div><p class="eyebrow">YOUR CONSISTENCY</p><h2>Study progress</h2></div></div><div class="ring" id="ring"><div><strong id="percent">0%</strong><span>completed</span></div></div><p class="progressnote" id="progressNote">Your progress will appear here as you finish tasks.</p><div class="line"><span>Completed tasks</span><b id="fraction">0 / 0</b></div><div class="track"><span id="progressBar" style="width:0"></span></div><button class="secondary full" data-goto="progress">See progress details →</button></section>
+</div>
+</section>
+<section class="view" id="assignments" hidden>
+<section class="panel"><div class="panelhead"><div><p class="eyebrow">STAY ON TRACK</p><h2>All assignments</h2><p class="subtle">Organize your work by deadline and priority.</p></div><button class="primary" id="addTask2">＋ Add assignment</button></div>
+<div class="toolbar"><input id="search" type="search" placeholder="⌕  Search assignments..." aria-label="Search assignments"><select id="status"><option value="all">All statuses</option><option value="pending">Pending</option><option value="completed">Completed</option><option value="overdue">Overdue</option></select><select id="subjectFilter"><option value="all">All subjects</option><option>Programming</option><option>Mathematics</option><option>Science</option><option>English</option><option>Other</option></select></div>
+<div id="allTasks"></div><div id="emptyAll" class="empty" hidden><b>No assignments found</b>Try another search or add a new assignment.</div></section>
+</section>
+<section class="view" id="progress" hidden><section class="panel"><p class="eyebrow">SMALL WINS MATTER</p><h2>Your progress at a glance</h2><p class="subtle">A snapshot of how you're managing your assignments.</p><div class="breakdown"><div class="breakcard"><span>Completed</span><b id="pCompleted">0</b></div><div class="breakcard"><span>Pending</span><b id="pPending">0</b></div><div class="breakcard"><span>Overdue</span><b id="pOverdue">0</b></div><div class="breakcard"><span>Total assignments</span><b id="pTotal">0</b></div></div><h2 style="font-size:16px">Tasks by subject</h2><div id="subjectBars"></div></section></section>
+<footer>Made for focused minds ✦ Your assignments are saved on this device.</footer>
+</main></div>
+
+<dialog id="taskDialog"><form id="taskForm">
+<div class="dialoghead"><div><p class="eyebrow">PLAN YOUR NEXT STEP</p><h2 id="dialogTitle">Add assignment</h2></div><button class="close" type="button" id="closeDialog">✕</button></div>
+<input type="hidden" id="taskId">
+<div class="field"><label for="title">Assignment title *</label><input id="title" maxlength="90" required placeholder="e.g. Finish HTML practical file"></div>
+<div class="formrow"><div class="field"><label for="subject">Subject</label><select id="subject"><option>Programming</option><option>Mathematics</option><option>Science</option><option>English</option><option>Other</option></select></div><div class="field"><label for="priority">Priority</label><select id="priority"><option value="medium">Medium</option><option value="high">High</option><option value="low">Low</option></select></div></div>
+<div class="field"><label for="dueDate">Due date *</label><input id="dueDate" type="date" required></div>
+<div class="field"><label for="notes">Notes (optional)</label><textarea id="notes" rows="3" maxlength="300" placeholder="Add a reminder or a few details..."></textarea></div>
+<div class="error" id="error" role="alert"></div><div class="dialogactions"><button type="button" class="secondary" id="cancelDialog">Cancel</button><button class="primary" type="submit" id="saveBtn">Save assignment</button></div>
+</form></dialog>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+<script src="script.js"></script>
+</body>
+</html>
